@@ -26,3 +26,9 @@ pacientes.forEach(paciente => {
     tdImc.textContent = imc.toFixed(2);
   }
 });
+
+var addPaciente = documente.querySelector("#adicionar-paciente");
+
+addPaciente.addEventListener("click", (event)=>{
+  event.preventDefault();
+})
