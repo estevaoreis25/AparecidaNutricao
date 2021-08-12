@@ -2,13 +2,28 @@ var addPaciente = document.querySelector("#adicionar-paciente");
 addPaciente.addEventListener("click", (event)=>{
   event.preventDefault();
 
+  var ulErros = document.querySelector("#mensagens-erro");
+  ulErros.textContent='';
+  
   var form = document.querySelector("#form-adiciona");
   var paciente = obtemPacienteFormulario(form);
   var pacienteTr = montaTr(paciente);
   var tabela = document.querySelector("#tabela-pacientes");
 
-  tabela.appendChild(pacienteTr);
+  var erros = validaPaciente(paciente);
+
+  if(erros.length > 0){
+    exibeMensagensErro(erros, ulErros);
+    form.reset();
+  } 
+  else{
+
+    tabela.appendChild(pacienteTr);
+  
+  } 
+  
   form.reset();
+  return;
 
 });
 
@@ -46,7 +61,21 @@ function montaTd(dado, classe){
 }
 
 function validaPaciente(paciente){
-    if(validaPeso(paciente.peso)){
-      return true;
-    } else return false;
+
+    var erros = [];
+    if(!validaPeso(paciente.peso)){
+      erros.push("Peso inválido");
+    }
+    if(!validaAltura(paciente.altura)){
+      erros.push("Altura inválida");
+    }
+    return erros;
+}
+
+function exibeMensagensErro(erros, ulErros){
+  erros.forEach(erro => {
+    var liErro = document.createElement("li");
+    liErro.textContent = erro;
+    ulErros.appendChild(liErro);
+  });
 }
