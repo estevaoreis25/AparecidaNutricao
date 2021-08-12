@@ -14,6 +14,8 @@ pacientes.forEach(paciente => {
   
   var pesoValido = validaPeso(peso);
   var alturaValida = validaAltura(altura);
+  var gorduraValida = validaGordura(gordura);
+
 
   if(!pesoValido){
     tdImc.textContent = "Peso inválido";
@@ -37,6 +39,12 @@ function validaPeso(peso){
 
 function validaAltura(altura){
   if(altura > 0 && altura < 3.0){
+    return true;
+  } else return false;
+}
+
+function validaGordura(gordura){
+  if(gordura >= 0 && gordura < 100){
     return true;
   } else return false;
 }
