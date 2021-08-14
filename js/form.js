@@ -24,7 +24,6 @@ addPaciente.addEventListener("click", (event)=>{
   
   form.reset();
   return;
-  // jkjkdhaskjhfksajdlfclhaksdhfkasd fukas
 
 });
 
